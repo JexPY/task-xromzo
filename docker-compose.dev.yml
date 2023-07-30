@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+  gapi:
+    image: objmngr-server/graphql
+    build:
+       context: ./gapi
+    volumes:
+    - './app:/app'
+    command: /start.sh
+    ports:
+      - 80:80
+    expose:
+      - 80
+
+      
+  ### NGINX Server #########################################
+  nginx:
+    image: nginx:alpine
+    build:
+      context: ./nginx
+      args:
+        - PYTHON_UPSTREAM_CONTAINER=app
+        - PYTHON_UPSTREAM_PORT=3000
+    volumes:
+      - './api/app:app'
+      - './logs/nginx/:/var/log/nginx'
+      - './nginx/sites/:/etc/nginx/sites-available'
+      # - ./data/certbot/certs/:/var/certs
+      # - ./certbot/letsencrypt/:/var/www/letsencrypt
+    ports:
+      - '80:80'
+      # - '443:443'
+    depends_on:
+      - api
