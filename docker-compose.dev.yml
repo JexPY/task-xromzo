@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  gapi:
+    image: objmngr-server/graphql
+    build:
+       context: ./gapi
+    volumes:
+    - './app:/app'
+    command: /start.sh
+    ports:
+      - 80:80
+    expose:
+      - 80
