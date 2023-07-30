@@ -2,7 +2,6 @@
 
 ## The code assignment.
 
-````
 STEP 1:
 Design an ObjectMgr which manages a pool of objects. Objects can be considered to be ints (from 1 to n). It should provide api’s to get_object() and free_object():
 
@@ -15,7 +14,6 @@ STEP 2:
 
 1. Write a GraphQL API schema to use the above functions to create, get and free objects.
 2. Deploy it as a service/container that can be used to deploy on a linux server.
-```
 
 # Answer
 
@@ -30,7 +28,7 @@ class ObjectMgr:
         self.object_pool = deque(range(1, n))
         self.allocated_objects = set()
         self.freed_objects = deque()
-````
+```
 
 ## Decided to use:
 
