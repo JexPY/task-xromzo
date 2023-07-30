@@ -2,6 +2,7 @@
 
 ## The code assignment.
 
+````
 STEP 1:
 Design an ObjectMgr which manages a pool of objects. Objects can be considered to be ints (from 1 to n). It should provide api’s to get_object() and free_object():
 
@@ -14,6 +15,7 @@ STEP 2:
 
 1. Write a GraphQL API schema to use the above functions to create, get and free objects.
 2. Deploy it as a service/container that can be used to deploy on a linux server.
+```
 
 # Answer
 
@@ -28,7 +30,7 @@ class ObjectMgr:
         self.object_pool = deque(range(1, n))
         self.allocated_objects = set()
         self.freed_objects = deque()
-```
+````
 
 ## Decided to use:
 
@@ -65,63 +67,63 @@ class ObjectMgr:
 
 - ## Development
 
-  0. Make sure your python is <= "3.10.\*"
+0. Make sure your python is <= "3.10.\*"
 
-  1. Create virtual env, with:
+1. Create virtual env, with:
 
-  ```shell
-   python -m venv .venv
-  ```
+```shell
+python -m venv .venv
+```
 
-  2. move to _app_ folder'
+2. move to _app_ folder'
 
-  ```shell
-  cd ./app
-  ```
+```shell
+cd ./app
+```
 
-  3. Install requirements with pip:
+3. Install requirements with pip:
 
-  ```shell
-   pip install -r requirements.txt
-  ```
+```shell
+pip install -r requirements.txt
+```
 
-  4. Or install requirements with poetry:
+4. Or install requirements with poetry:
 
-  ```shell
-   poetry install
-  ```
+```shell
+poetry install
+```
 
-  3. To run app:
+3. To run app:
 
-  ```shell
-   flask run
-  ```
+```shell
+flask run
+```
 
-  ```shell
-   flask --debug run
-  ```
+```shell
+flask --debug run
+```
 
-  ```shell
-   python app.py
-  ```
+```shell
+python app.py
+```
 
-  ```shell
-   gunicorn --worker-class gevent --workers 8 --bind 127.0.0.1:5000 app:"create_app()" --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info --log-level info
-  ```
+```shell
+gunicorn --worker-class gevent --workers 8 --bind 127.0.0.1:5000 app:"create_app()" --max-requests 10000 --timeout 5 --keep-alive 5 --log-level info --log-level info
+```
 
 - ## To run with docker-compose
 
-  1. ### create **docker-compose.yml** from:
+1. create **docker-compose.yml** from:
 
-  - **docker-compose.dev.yml**
-  - or
-  - **docker-compose.prod.yml**
+   - **docker-compose.dev.yml**
+   - or
+   - **docker-compose.prod.yml**
 
-  2. ### run
+2. ### run
 
-  ```shell
+   ```shell
    docker-compose up
-  ```
+   ```
 
 # Production
 
