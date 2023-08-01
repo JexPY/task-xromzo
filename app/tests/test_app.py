@@ -7,7 +7,7 @@ from object.objectmgr import ObjectMgr
 
 @pytest.fixture
 def my_app_context():
-    test_app = create_app('TestingConfig')
+    test_app = create_app("TestingConfig")
     with test_app.app_context() as app_context:
         global object_mgr
         object_mgr = ObjectMgr(10)
